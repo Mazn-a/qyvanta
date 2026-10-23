@@ -8,6 +8,7 @@ function singleHtmlFile(): Plugin {
     name: "single-html-file",
     apply: "build",
     closeBundle() {
+      if (process.env.PAGES === "1") return;
       const dist = resolve("dist");
       let html = readFileSync(resolve(dist, "index.html"), "utf8");
       for (const name of readdirSync(resolve(dist, "assets"))) {
