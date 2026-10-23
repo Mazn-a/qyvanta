@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>الهوية البصرية — قيفانتا</title>
+<style>
+  @font-face { font-family: "IBM Plex Sans Arabic"; src: url("fonts/IBMPlexSansArabic-Regular.ttf") format("truetype"); font-weight: 400; }
+  @font-face { font-family: "IBM Plex Sans Arabic"; src: url("fonts/IBMPlexSansArabic-Medium.ttf") format("truetype"); font-weight: 500; }
+  @font-face { font-family: "IBM Plex Sans Arabic"; src: url("fonts/IBMPlexSansArabic-SemiBold.ttf") format("truetype"); font-weight: 600; }
+  @font-face { font-family: "IBM Plex Sans Arabic"; src: url("fonts/IBMPlexSansArabic-Bold.ttf") format("truetype"); font-weight: 700; }
+
+  :root {
+    --brown: #633a11;
+    --deep: #2a1810;
+    --ink: #1a120c;
+    --gold: #c4a35a;
+    --gold-deep: #a8843d;
+    --muted: #6f5340;
+    --cream: #f7f1e8;
+    --header: #ead4bd;
+    --card: #fffdf9;
+    --line: #e4d3bc;
+    --on: #fff8ef;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 0; }
+  html, body {
+    background: #d9cfc2;
+    color: var(--ink);
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 400;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+  .sheet {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto 12px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  .foot {
+    position: absolute;
+    right: 16mm;
+    left: 16mm;
+    bottom: 10mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    padding-top: 5px;
+    font-size: 11px;
+    line-height: 16px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .foot b { color: var(--deep); font-weight: 600; }
+  .cover { background: var(--cream); display: flex; flex-direction: column; }
+  .cover-top {
+    background: var(--deep);
+    color: var(--on);
+    padding: 14mm 16mm 12mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .who { display: flex; align-items: center; gap: 14px; }
+  .who svg { width: 56px; height: 56px; flex: none; }
+  .who .name { font-size: 22px; line-height: 30px; font-weight: 700; }
+  .who .role { margin-top: 2px; font-size: 14px; line-height: 20px; font-weight: 500; color: #ead4bd; }
+  .doc-type {
+    text-align: left;
+    border: 1px solid rgba(196, 163, 90, 0.55);
+    padding: 10px 14px 8px;
+    min-width: 128px;
+  }
+  .doc-type small { display: block; font-size: 12px; line-height: 18px; font-weight: 500; color: #ead4bd; }
+  .doc-type strong { display: block; margin-top: 2px; font-size: 16px; line-height: 24px; font-weight: 700; color: var(--on); }
+  .cover-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8mm 18mm 18mm;
+  }
+  .mark { width: 118px; height: 118px; display: block; }
+  .brand-name { margin-top: 18px; font-size: 72px; line-height: 84px; font-weight: 700; color: var(--deep); }
+  .brand-rule { width: 72px; height: 3px; margin: 10px auto 0; border-radius: 99px; background: var(--gold); }
+  .brand-en { margin-top: 10px; font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: 0.08em; color: #8b5a2b; }
+  .dek { max-width: 128mm; margin-top: 22px; font-size: 18px; line-height: 30px; font-weight: 500; color: var(--muted); }
+  .inner { height: 100%; padding: 14mm 16mm 22mm; display: flex; flex-direction: column; }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--brown);
+    margin-bottom: 16px;
+  }
+  .topbar strong { display: block; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--deep); }
+  .topbar span, .topbar .doc { font-size: 12px; line-height: 18px; color: var(--muted); font-weight: 500; }
+  h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: 700;
+    color: var(--deep);
+  }
+  h2 .idx { font-size: 13px; line-height: 20px; font-weight: 600; color: var(--gold-deep); }
+  .block { margin-bottom: 16px; }
+  .lead { font-size: 14.5px; line-height: 26px; font-weight: 400; color: #3a2a1c; }
+  .lead + .lead { margin-top: 6px; }
+  .split {
+    display: grid;
+    grid-template-columns: 34mm 1fr;
+    gap: 14px;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 16px;
+  }
+  .split .mini { width: 34mm; height: 34mm; }
+  .colors { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px 12px; }
+  .swatch { display: grid; gap: 6px; }
+  .chip { height: 22mm; border-radius: 12px; border: 1px solid transparent; }
+  .chip.line { border-color: var(--line); }
+  .swatch .name { font-size: 13px; line-height: 20px; font-weight: 600; color: var(--deep); }
+  .swatch .hex { font-size: 12px; line-height: 18px; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); }
+  .note { margin-top: 12px; font-size: 13px; line-height: 22px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<section class="sheet cover">
+  <header class="cover-top">
+    <div class="who">
+      <svg viewBox="4 0 56 56" aria-hidden="true">
+        <circle cx="16" cy="24" r="6" fill="#F7F1E8"/>
+        <circle cx="32" cy="16" r="6" fill="#C4A35A"/>
+        <circle cx="48" cy="24" r="6" fill="#F7F1E8"/>
+        <path d="M8 44h48" fill="none" stroke="#F7F1E8" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="name">قيفانتا</div>
+        <div class="role">منصة طلبات الطعام</div>
+      </div>
+    </div>
+    <div class="doc-type">
+      <small>يُعرض عليكم</small>
+      <strong>الهوية البصرية</strong>
+    </div>
+  </header>
+
+  <div class="cover-body">
+    <svg class="mark" viewBox="4 0 56 56" aria-hidden="true">
+      <circle cx="16" cy="24" r="6" fill="#633A11"/>
+      <circle cx="32" cy="16" r="6" fill="#C4A35A"/>
+      <circle cx="48" cy="24" r="6" fill="#633A11"/>
+      <path d="M8 44h48" fill="none" stroke="#633A11" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <div class="brand-name">قيفانتا</div>
+    <i class="brand-rule"></i>
+    <div class="brand-en">Qyvanta</div>
+    <p class="dek">منصة عربية لطلبات الطعام في المناسبات والفعاليات.</p>
+  </div>
+
+  <footer class="foot">
+    <span>قيفانتا</span>
+  </footer>
+</section>
+
+<section class="sheet">
+  <div class="inner">
+    <header class="topbar">
+      <div>
+        <strong>قيفانتا</strong>
+        <span>الهوية البصرية</span>
+      </div>
+      <div class="doc">هوية قيفانتا</div>
+    </header>
+
+    <div class="block">
+      <h2><span class="idx">01</span> الاسم</h2>
+      <p class="lead">قيفانتا الاسم التجاري للمنصة. تقف بين الجهة التي تريد ضيافة مناسبتها، والمطعم الذي يُعدّها، وتُبقي الطلب واضحًا من أول خطوة حتى يوم الاستلام.</p>
+      <p class="lead">بالإنجليزية يُكتب <span class="ltr">Qyvanta</span>.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="idx">02</span> العلامة</h2>
+      <div class="split">
+        <svg class="mini" viewBox="4 0 56 56" aria-hidden="true">
+          <circle cx="16" cy="24" r="6" fill="#633A11"/>
+          <circle cx="32" cy="16" r="6" fill="#C4A35A"/>
+          <circle cx="48" cy="24" r="6" fill="#633A11"/>
+          <path d="M8 44h48" fill="none" stroke="#633A11" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <p class="lead">ثلاث نقاط فوق خط. النقطتان البنيتان هما الطرفان: من يطلب، ومن يُضيف. النقطة الذهبية في الوسط، وهي أعلى قليلًا، لحظة الاتفاق. الخط تحتها هو المائدة.</p>
+          <p class="lead">حين تظهر العلامة ترتفع النقاط معًا، ثم تستقر على هذا الشكل. حركة قصيرة، والاجتماع يتم بهدوء.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2><span class="idx">03</span> المنصة</h2>
+      <p class="lead">قيفانتا منصة لترتيب طلبات الطعام في المناسبات والفعاليات. يمضي الطلب فيها بمسار واحد: المدينة، فالمطعم، ثم نوع الوجبة والعدد والموعد، حتى التأكيد والتسليم.</p>
+      <p class="lead">تتوفر المنصة باللغتين العربية والإنجليزية، وتُقدَّم بواجهة هادئة تليق بضيافة المناسبات.</p>
+    </div>
+  </div>
+  <footer class="foot">
+    <span>هوية قيفانتا</span>
+    <b>02</b>
+  </footer>
+</section>
+
+<section class="sheet">
+  <div class="inner">
+    <header class="topbar">
+      <div>
+        <strong>قيفانتا</strong>
+        <span>الهوية البصرية</span>
+      </div>
+      <div class="doc">هوية قيفانتا</div>
+    </header>
+
+    <div class="block">
+      <h2><span class="idx">04</span> الألوان</h2>
+      <p class="lead">البني يحمل الاسم والأزرار. الذهبي للتأكيد وللنقطة التي في قلب العلامة. الكريم والبيج للخلفيات حتى تبقى الصفحة مضيئة. النص بني غامق، لا أسود صرف.</p>
+    </div>
+
+    <div class="colors">
+      <div class="swatch"><div class="chip" style="background:#633A11"></div><div class="name">البني الأساسي</div><div class="hex ltr">#633A11</div></div>
+      <div class="swatch"><div class="chip" style="background:#2A1810"></div><div class="name">البني الغامق</div><div class="hex ltr">#2A1810</div></div>
+      <div class="swatch"><div class="chip" style="background:#C4A35A"></div><div class="name">الذهبي</div><div class="hex ltr">#C4A35A</div></div>
+      <div class="swatch"><div class="chip" style="background:#A8843D"></div><div class="name">الذهبي الهادئ</div><div class="hex ltr">#A8843D</div></div>
+      <div class="swatch"><div class="chip line" style="background:#F7F1E8"></div><div class="name">خلفية الصفحة</div><div class="hex ltr">#F7F1E8</div></div>
+      <div class="swatch"><div class="chip line" style="background:#EAD4BD"></div><div class="name">رأس الصفحة</div><div class="hex ltr">#EAD4BD</div></div>
+      <div class="swatch"><div class="chip line" style="background:#FFFDF9"></div><div class="name">البطاقات</div><div class="hex ltr">#FFFDF9</div></div>
+      <div class="swatch"><div class="chip" style="background:#1A120C"></div><div class="name">لون النص</div><div class="hex ltr">#1A120C</div></div>
+    </div>
+    <p class="note">النص الثانوي <span class="ltr">#6F5340</span> · الكتابة على الأزرار <span class="ltr">#FFF8EF</span></p>
+
+    <div class="block" style="margin-top:22px">
+      <h2><span class="idx">05</span> الخط</h2>
+      <p class="lead">الخط هو <span class="ltr">IBM Plex Sans Arabic</span>. وزن أوضح للاسم والعناوين، ووزن أهدأ للشرح. المسافات بين السطور واسعة حتى تُقرأ الهوية براحة، كما تُقرأ المنصة.</p>
+    </div>
+  </div>
+  <footer class="foot">
+    <span>هوية قيفانتا</span>
+    <b>03</b>
+  </footer>
+</section>
+
+</body>
+</html>
